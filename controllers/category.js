@@ -1,15 +1,25 @@
-const { param } = require("../routes/auth");
+const prisma = require("../config/prisma");
+// const params  = require("../routes/auth");
 
 exports.create=async(req,res)=>{
     try{
-        res.send("Category Create");
+        // code
+        const {name}=req.body;
+        const category=await prisma.category.create({
+            data:{
+                name:name
+            }
+        })
+        res.send(category);
     }catch(err){
         res.status(400).json({message:"create error"})
     }
 }
-exports.add=async(req,res)=>{
+exports.list=async(req,res)=>{
     try{
-        res.send("Category add");
+        // code
+        const category=await prisma.category.findMany()
+        res.send(category);
     }catch(err){
         res.status(400).json({message:"create error"})
     }
@@ -17,8 +27,12 @@ exports.add=async(req,res)=>{
 exports.remove=async(req,res)=>{
     try{
         const {id}=req.params
-        console.log(id)
-        res.send("Category remove");
+        const category = await prisma.category.delete({
+            where:{
+                id:Number(id)
+            }
+        })
+        res.send(category);
     }catch(err){
         res.status(500).json({message:"create error"})
     }

@@ -1,11 +1,11 @@
 const express = require("express");
 const router=express.Router();
-const {create,add,remove}=require('../controllers/category')
+const {create,list,remove,}=require('../controllers/category')
 
 
 // Endpoint Category
 router.post('/category',create)
-router.get('/category',add)
+router.get('/category',list)
 router.delete('/category/:id',remove)
 
 

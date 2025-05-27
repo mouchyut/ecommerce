@@ -69,7 +69,7 @@ exports.login = async (req, res) => {
         role:user.role
     }
 
-    // step 4 generate token
+    // step 4 generate token(A string that proves a user's identity and/or permissions)
         jwt.sign(payload,process.env.secret_key,{expiresIn:'1d'},
             (err,token)=>{
                 if(err){
