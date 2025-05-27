@@ -38,8 +38,10 @@ model Product{
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
   orderItems ProductOnOrder[]
-  images Image[]
+  images  Image[]
   cartItems ProductOnCart[]
+  category Category? @relation(fields: [categoryId],references: [id])
+  categoryId Int?
 }
 model Order{
   id Int @id @default(autoincrement())
@@ -65,6 +67,7 @@ model Category{
   name String
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+  products Product[]
 }
 model Cart{
   id Int @id @default(autoincrement())
@@ -85,11 +88,11 @@ model ProductOnCart{
   productId Int
 }
 model Image{
-   id Int @id @default(autoincrement())
-   asset_id String
-   public_id String
-   url String
-   secure_url String
+  id Int @id @default(autoincrement())
+  asset_id String
+  public_id String
+  url String
+  secure_url String
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
   product Product @relation(fields: [productId],references: [id],onDelete: Cascade)
