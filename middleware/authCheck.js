@@ -35,7 +35,16 @@ exports.adminCheck = async(req,res,next)=>{
     try{
         // check from authCheck user
         const {email} = req.user
-        console.log('admin check',email) 
+        const adminUser= await prisma.user.findFirst({
+            where:{
+                email:email
+            }
+        })
+        // check admin and create condition for admin only
+        if (!adminUser || adminUser.role !== "admin"){
+            return res.status(403).json({message:"Access Denied: admin only!!!"})
+        }
+        // console.log('admin check',adminUser) 
         next()
     }catch(err){
         console.log(err)

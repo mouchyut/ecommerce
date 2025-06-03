@@ -38,7 +38,8 @@ exports.register = async (req, res) => {
         }
     })
     // console.log(user);
-    res.status(400).json({message:"Register Successfully!!!"})
+    res.status(200).json({ message: "Register Successfully!!!" });
+
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Server error" });
@@ -70,7 +71,7 @@ exports.login = async (req, res) => {
     }
 
     // step 4 generate token(A string that proves a user's identity and/or permissions)
-        jwt.sign(payload,process.env.secret_key,{expiresIn:'1d'},
+        jwt.sign(payload,process.env.secret_key,{expiresIn:'1w'},
             (err,token)=>{
                 if(err){
                     return res.status(500).json({message:"Server Error"})
