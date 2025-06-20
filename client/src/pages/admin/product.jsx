@@ -1,9 +1,10 @@
 import React from 'react'
+import FormProduct from '../../components/admin/formProduct'
 
 const product = () => {
   return (
     <div>
-      <h1>product</h1>
+        <FormProduct />
     </div>
   )
 }

@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import useEcomStore from '../store/ecom-store';
-import { currentAdmin } from '../api/auth';
+import { currentUser } from '../api/auth';
 import LoadingToRedirect from './LoadingToRedirect';
-const ProtectRouteAdmin = ({element}) => {
+const ProtectRouteUser = ({element}) => {
     const [ok,setOk] = useState(false);
     const user = useEcomStore((state)=>state.user)
     const token = useEcomStore((state)=>state.token)
@@ -10,7 +11,7 @@ const ProtectRouteAdmin = ({element}) => {
     useEffect(()=>{
         if(user && token){
             // send to back
-            currentAdmin(token)
+            currentUser(token)
             .then((res)=>setOk(true))
             .catch((err)=>setOk(false))
         }
@@ -20,4 +21,4 @@ const ProtectRouteAdmin = ({element}) => {
   return ok ? element: <LoadingToRedirect />
 }
 
-export default ProtectRouteAdmin
+export default ProtectRouteUser
