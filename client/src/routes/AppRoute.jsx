@@ -16,8 +16,8 @@ import Category from "../pages/admin/category";
 import Manage from "../pages/admin/manage";
 import LayoutUser from "../layouts/layoutUser";
 import HomeUser from "../pages/user/homeUser"
-import ProtectRouteUser from "./ProtectRouteUser";
-import ProtectRouteAdmin from "./ProtectRouteAdmin";
+import ProtectRouteUser from "./ProtectRouteAdmin";
+import ProtectRouteAdmin from "./ProtectRouteUser";
 const router = createBrowserRouter([
   {
     path: "/",
